@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div .vue{
+				width:150px;
+	            height:35px;
+	            border:1px solid #ccc;
+	            margin:100px auto;
+	            text-align:center;
+	            line-height: 35px;
+	            background: purple;
+	            color:#fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="vue" v-if="num == 1">vue</div>
+			<div class="vue" v-else-if="num == 2">hello</div>
+			<div class="vue" v-else-if="num ==3">test</div>
+			<div class="vue" v-else>none</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+		el:"#app",
+		data:{
+			num : 3
+		}
+	})
+</script>

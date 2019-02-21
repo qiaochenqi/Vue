@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{site}}</p>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			name:'Google',
+			url:"https://wwww.google.com"
+		},
+		computed:{
+			site:{
+				get:function(){
+					return this.name + '' + this.url
+				},
+				set:function(newValue){
+					var names = newValue.split(' ')
+					this.name = names[0]
+					this.url = names[names.length - 1]
+				}
+			}
+		}
+	})
+	vm.site = 'QCq https://www.baidu.com';
+	document.write('name:'+ vm.name);
+	document.write('<br />');
+	document.write('url:'+ vm.url);
+</script>

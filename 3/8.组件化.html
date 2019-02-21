@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+</html>
+<script>
+    var MyH = {
+        template:'<div>头部</div>'
+    }
+    var MyB = {
+        template:'<div>身体</div>'
+    }
+    var MyF = {
+        template:`<div>底部
+        <button @click="showNum(123)">点我</button>
+        </div>`,
+        methods:{
+            showNum:function(num){
+                alert(num); 
+            }
+        }
+    }
+    var App = {
+        components:{
+            'my-h':MyH,
+            'my-b':MyB,
+            'my-f':MyF
+        },
+        template:`
+        <div>
+            <my-h></my-h>
+            <my-b></my-b/>
+            <my-f></my-f/>
+        </div>
+        `
+    }
+
+    new Vue({
+        el:"#app",
+        components:{
+            app:App
+        },
+        template:'<app/>'
+    })
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1 v-text="vText"></h1>
+			
+			<p v-html="vHtml">{{vHtml}}</p>
+			
+			<a v-bind:href="link">好123</a>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+		el:"#app",
+		data:{
+			vText:"这是一段纯文本",
+			vHtml:"<a href='https://www.baidu.com'>百度一下</a>",
+			link:"https://www.hao123.com"
+		}
+	})
+</script>

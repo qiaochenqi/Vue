@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input id="tt" type="text" value="" v-on:click="test" v-on:input="changeTitle"/>
+			<p>{{title}}</p>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+		el:"#app",
+		data:{
+			title:"我想好好学习Vue"
+		},
+		methods:{
+			test:function(){
+				this.title = "Helle Vue"
+			},
+			changeTitle:function(event){
+				this.title = event.target.value
+			}
+		}
+	})
+</script>

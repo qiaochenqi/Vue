@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#app p{
+				width:300px;
+	            height: 300px;
+	            background: red;
+	            border: 2px solid #ccc;
+	            margin:100px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<input type="button" value="change" v-on:click="changeValue"/>
+			
+			<p>{{text}}</p>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	new Vue({
+		el:"#app",
+		data:{
+			text:"这是一个盒子"
+		},
+		methods:{
+			changeValue:function(){
+				this.text = "123456"
+			}
+		}
+	})
+</script>

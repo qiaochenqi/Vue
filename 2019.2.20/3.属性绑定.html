@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="taobao">淘宝</button>
+        <button @click="jd">京东</button>
+        <button @click="bd">百度</button>
+
+        <p>
+            {{title}}
+            --
+            <a :href="link">{{name}}</a>
+        </p>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            name:"百度",
+            title:"百度",
+            link:"https://www.baidu.com"
+        },
+        methods:{
+            change(name,link){
+                this.name = name;
+                this.link = link;
+            },
+            taobao(){
+                this.change("淘宝","https://www.taobao.com")
+            },
+            jd(){
+                this.change("京东","https://www.jd.com")
+            },
+            bd(){
+                this.change("百度","https://www.baidu.com")
+            }
+        }
+    })
+</script>

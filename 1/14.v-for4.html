@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(value,key) in obje">
+					{{key}}:{{value}}
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+		el:"#app",
+		data:{
+			obje:{
+				name:"乔琛淇",
+				url:"www.qcq.com",
+				slogan:"要努力挣钱"
+			}
+		}
+	})
+</script>

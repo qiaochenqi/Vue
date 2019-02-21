@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message"> 
+        <button @click="add()">添加</button> 
+        <button @click="del()">删除</button>
+        <button @click="sel()">查询</button>
+        <br>
+        <p>{{Array}}</p>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            Array:[12,23,36,45,54,6,76,55],
+            message:"",
+            newArray:[]
+        },
+        methods:{
+            add(){
+                this.Array.push(parseInt(this.message))
+            },
+            del(){
+                this.Array.pop()
+            },
+            sel(){
+                for (let i = 0; i < this.Array.length; i++) {
+                    if (this.Array[i] == this.message) {
+                        this.newArray.push(parseInt(this.message))
+                    }
+                }
+                this.Array = this.newArray
+            }
+        }
+    })
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .a{
+            background: red;
+        }
+        .b{
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        template:`
+        <div>
+            <ul>
+                <li v-for="item in stus" :class="item.myClass">
+                    {{ item.name}}
+                </li>
+            </ul>
+        </div>`,
+        data:function(){
+            return{
+                stus:[{name:'zhangsan',myClass:'a'},{name:'lisi',myClass:'b'},{name:'wangwu',myClass:'a'}]
+            }
+        }
+    });
+</script>

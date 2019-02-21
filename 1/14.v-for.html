@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="site in sites">
+					{{site.name}}
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+		el:"#app",
+		data:{
+			sites:[
+			{name:"小李"},
+			{name:"小张"},
+			{name:"小詹"}
+			]
+		}
+	})
+</script>

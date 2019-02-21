@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .box{
+            width:150px;
+            height: 150px;
+            background: red;
+            margin:80px auto;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <button @click="flag = !flag">click</button>
+
+    <div class="box" v-show="flag"></div>
+</div>
+
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : ".container",
+        data : {
+            flag : true,
+            arrData: ["meat","fruit","apple","hello"],
+            objData : [
+                {name : "张三",age : 20,sex : "男"},
+                {name : "李四",love : "唱歌",sex : "女"}
+            ]
+        },
+        methods : {
+
+        }
+    })
+
+</script>

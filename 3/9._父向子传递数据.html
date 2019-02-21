@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+</html>
+<script>
+    var Son = {
+        template:`
+            <div>
+                接收到父组件的数据:{{title}}
+                <h1 v-if="xxx">1</h1>
+                <h1 v-show="xxx">2</h1>
+                <ul>
+                    <li v-for="stu in ['zhangsan','lisi']">
+                        {{stu}}
+                    </li>
+                </ul>
+                <button @click="changeXxx">改变显示</button>
+
+                <hr/>
+
+                单向数据流(vue->html):<input type="text" :value="text"/><br/>
+                双向数据流(vue->html->vue):<input type="text" v-model="text"/><br/>
+                <h1>↓</h1>
+                {{ text }}
+            </div>
+        `,
+       data:function(){
+           return{
+               xxx:true,
+               text:'hello'
+           }
+       },
+       methods:{
+           changeXxx:function(){
+               this.xxx = !this.xxx;
+           }
+       },
+       props:['title'],
+    }
+
+    var App={
+        components:{
+            son:Son
+        },
+        template:`
+            <div>
+                <son :title="xxx"></son>
+            </div>
+        `,
+        data:function(){
+            return{ xxx:'我是xxx数据'}
+        }
+    };
+
+    new Vue({
+        el:"#app",
+        components:{
+            app:App
+        },
+        template:'<app/>'
+    })
+</script>

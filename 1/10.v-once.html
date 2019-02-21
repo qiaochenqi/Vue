@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p v-once>{{title}}</p>
+			
+			<h1>{{result()}}</h1>
+			
+			<!--不重复渲染-->
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+		el:"#app",
+		data:{
+			title:"你好"
+		},
+		methods:{
+			result:function(){
+				return this.title = "我要好好学习";
+			}
+		}
+	})
+</script>
