@@ -9,10 +9,10 @@
 </head>
 <body>
     <div id="app">
-        <p v-if="flag">1<span>hello</span></p>
-        <p v-else>1</p>
-        <p>3</p>
-        <button @click="toggle">{{btnN}}</button>
+        <button @click="counter++">increase</button>
+        <button @click="counter--">decorease</button>
+        <p>加：{{counter}}</p>
+        <p>result：{{result()}}</p>
     </div>
 </body>
 </html>
@@ -20,13 +20,11 @@
     new Vue({
         el:"#app",
         data:{
-            flag:false,
-            btnN:"显示"
+            counter:0
         },
         methods:{
-            toggle:function(){
-                this.flag = !this.flag;
-                this.btnN = this.flag == true ? "隐藏" : "显示";
+            result(){
+                return this.counter > 5 ? "大于5" : "小于等于5"
             }
         }
     })

@@ -9,24 +9,27 @@
 </head>
 <body>
     <div id="app">
-        <p v-if="flag">1<span>hello</span></p>
-        <p v-else>1</p>
-        <p>3</p>
-        <button @click="toggle">{{btnN}}</button>
+        <input type="text" v-model="vData">
+        <button @click="add">Add</button>
+        <ul>
+            <li v-for="(ingre,i) in ingredients">{{ingre}}--({{i}})</li>
+        </ul>
+        
     </div>
 </body>
 </html>
 <script>
+
     new Vue({
         el:"#app",
         data:{
-            flag:false,
-            btnN:"显示"
+            vData :"",
+            ingredients:["meat","fruit","cookies"]
         },
         methods:{
-            toggle:function(){
-                this.flag = !this.flag;
-                this.btnN = this.flag == true ? "隐藏" : "显示";
+            add(){
+                this.ingredients.push(this.vData);
+                this.vData = "";
             }
         }
     })

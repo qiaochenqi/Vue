@@ -9,25 +9,16 @@
 </head>
 <body>
     <div id="app">
-        <p v-if="flag">1<span>hello</span></p>
-        <p v-else>1</p>
-        <p>3</p>
-        <button @click="toggle">{{btnN}}</button>
+        <p v-for="ingre in ingredients">{{ingre}}</p>
     </div>
 </body>
 </html>
 <script>
+
     new Vue({
         el:"#app",
         data:{
-            flag:false,
-            btnN:"显示"
-        },
-        methods:{
-            toggle:function(){
-                this.flag = !this.flag;
-                this.btnN = this.flag == true ? "隐藏" : "显示";
-            }
+            ingredients:["meat","fruit","cookies"]
         }
     })
 </script>

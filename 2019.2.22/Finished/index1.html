@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <div id="app">
+        <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">我</h1>
+            <div class="healthbar">
+                <div
+                        class="healthbar text-center"
+                        style="background-color: green; margin: 0; color: white;"
+                        :style="{width:playerHealth + '%'}"
+                        >
+                        {{playerHealth}}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">怪物</h1>
+            <div class="healthbar">
+                <div
+                        class="healthbar text-center"
+                        style="background-color: green; margin: 0; color: white;"
+                        :style="{width:monsterHealth + '%'}"
+                        >
+                        {{monsterHealth}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row controls" v-if="!gameRuning">
+            <div class="small-12 columns">
+                <button id="start-game" @click="startGame">START NEW GAME</button>
+            </div>
+    </section>
+
+    <section class="row controls" v-else>
+            <div class="small-12 columns">
+                <button id="attack" @click="attack">ATTACK</button>
+                <button id="special-attack" @click="special">SPECIAL ATTACK</button>
+                <button id="heal" @click="Help">HEAL</button>
+                <button id="give-up" @click="giveUp">GIVE UP</button>
+            </div>
+    </section>
+
+    <section class="row log" v-if="truns.length > 0">
+        <div class="small-12 columns">
+            <ul>
+                <li v-for="item in truns"
+                :class="{'player-turn':item.isPlayer,'monster-turn':!item.isPlayer}"
+                >
+                    {{item.text}}
+                </li>
+            </ul>
+        </div>
+    </section>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            truns : [],
+            playerHealth:100,  //wo
+            monsterHealth:100,  //guaiwu
+            gameRuning : false  //
+        },
+        methods:{
+            startGame(){
+                this.gameRuning = true;
+            },
+            giveUp(){
+                this.gameRuning = false;
+                this.playerHealth = 100;
+                this.monsterHealth = 100;
+            },
+            calculateDamage(min,max){
+                return Math.max(Math.floor(Math.random()*max)+1,min)
+            },
+            checkWin(){
+                if (this.monsterHealth <=0) {
+                    if (confirm("我赢了，是否开始新的游戏")) {
+                        this.startGame();
+                    }else{
+                        this.gameRuning = false;
+                    }
+                    this.playerHealth = 100;
+                    this.monsterHealth = 100;
+                    return true;
+                }
+                if(this.playerHealth <=0){
+                    if (confirm("我输了，是否开始新的游戏")) {
+                        this.startGame();
+                    }else{
+                        this.gameRuning = false;
+                    }
+                    this.playerHealth = 100;
+                    this.monsterHealth = 100;
+                    return true;
+                }
+            },
+            monsterAttacks(){
+                var damage = this.calculateDamage(5,12);
+                this.playerHealth -= damage;
+                this.truns.unshift({
+                    isPlayer : false,
+                    text : "怪兽对玩家造成了" + damage + "伤害"
+                })
+            },
+            attack(){
+                var damage = this.calculateDamage(3,10);
+                this.monsterHealth -= damage;
+                this.monsterAttacks();
+                this.truns.unshift({
+                    isPlayer : true,
+                    text : "玩家对怪兽造成了" + damage + "伤害"
+                })
+                if(this.checkWin()){
+                    return;
+                }
+            },
+            special(){
+                var damage = this.calculateDamage(10,20);
+                this.monsterHealth -= damage;
+                this.monsterAttacks();
+                this.truns.unshift({
+                    isPlayer : true,
+                    text : "玩家对怪兽造成了" + damage + "伤害"
+                })
+                if(this.checkWin()){
+                    return;
+                }
+            },
+            Help(){
+                if(this.playerHealth <= 90){
+                    var damage = this.calculateDamage(3,10);
+                    this.playerHealth += damage;
+                    this.truns.unshift({
+                        isPlayer : true,
+                        text : "玩家恢复了" + damage + "血量"
+                    })
+                }else{
+                    this.playerHealth = 100;
+                }
+                
+            }
+        }
+    })
+</script>
