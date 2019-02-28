@@ -1,0 +1,161 @@
+<template lang="html">
+    <div class="container">
+        <form  v-show="!flg">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <h1>File a Complaint</h1>
+                    <hr>
+                    <div class="form-group">
+                        <label for="email">Mail</label>
+                        <input
+                                type="text"
+                                id="email"
+                                class="form-control" v-model="arraystat.email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                                type="password"
+                                id="password"
+                                class="form-control" v-model.lazy.number="arraystat.password">
+                                {{yanzheng()}}
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input
+                                type="number"
+                                id="age"
+                                class="form-control" v-model="arraystat.number">
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
+                    <label for="message">Message</label><br>
+                    <!-- Interpolation between <textarea>{{ test }}</textarea> doesn't work!-->
+                    <textarea
+                            id="message"
+                            rows="5"
+                            class="form-control" v-model="message"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div class="form-group">
+                        <label for="sendmail">
+                            <input
+                                    v-model="sendMail"
+                                    type="checkbox"
+                                    id="sendmail"
+                                    value="SendMail"> Send Mail
+                        </label>
+                        <label for="sendInfomail">
+                            <input
+                                    v-model="sendMail"
+                                    type="checkbox"
+                                    id="sendInfomail"
+                                    value="SendInfoMail"> Send Infomail
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
+                    <label for="male">
+                        <input
+                                v-model="genter"
+                                type="radio"
+                                id="male"
+                                value="Male"> Male
+                    </label>
+                    <label for="female">
+                        <input
+                                v-model="genter"
+                                type="radio"
+                                id="female"
+                                value="Female"> Female
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                    <label for="priority">Priority</label>
+                    <select
+                            v-model="selected"
+                            id="priority"
+                            class="form-control">
+                        <option v-for="item in prioritys">{{item}}</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <button
+                            @click.prevent="flg = true"
+                            class="btn btn-primary">Submit!
+                    </button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div class="row" v-show="flg">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Your Data</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Mail:{{arraystat.email}}</p>
+                        <p>Password:{{arraystat.password}}</p>
+                        <p>Age:{{arraystat.number}}</p>
+                        <p>Message: {{message}}</p>
+                        <p><strong>Send Mail?</strong></p>
+                        <ul>
+                            <li v-for="item in sendMail">{{item}}</li>
+                        </ul>
+                        <p>Gender:{{genter}}</p>
+                        <p>Priority:{{selected}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+      data:function(){
+        return {
+          arraystat:{
+            email:"",
+            password:"",
+            number:"20"
+          },
+          message:"",
+          sendMail:[],
+          genter:"mel",
+          prioritys:["qiao","zhan","chen"],
+          selected:"qiao",
+          flg:false
+        }
+      },
+      methods:{
+        yanzheng(){
+            if(this.arraystat.password == ""){
+                return "";
+            }else if(this.arraystat.password == 123456){
+                return "密码正确"
+            }else{
+                return "密码错误"
+            }
+        }
+      }
+    }
+</script>
+
+<style>
+
+</style>

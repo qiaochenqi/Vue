@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        数字一{{num1 | toInt}}
+        数字一{{num2}}
+        数字一{{num3}}
+
+        <hr>
+        {{sum}}
+        {{a}}
+        <button @click="content">点击</button>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            num1:121.54,
+            num2:2,
+            num3:3,
+            a:0
+        },
+        filters:{
+            toInt(value){
+                return parseInt(value)
+            }
+        },
+        computed:{
+            sum(){
+                return this.num1 + this.num2 + this.num3
+            }
+        },
+        methods:{
+            content(){
+                this.a++
+            }
+        },
+        watch:{
+            a(){
+                console.log(`有变化了，最新值：`);
+          console.log(this.a);
+            }
+        }
+    })
+</script>
